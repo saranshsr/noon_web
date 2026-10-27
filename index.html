@@ -22,8 +22,8 @@
   .bcard>svg{position:absolute;left:0;top:0;display:block}
   .bcard svg text{font-family:'Figtree',system-ui,sans-serif}
   /* cursor-proximity border: each card's edge lights up near the pointer, in its own accent */
-  .bcard>.edge{position:absolute;inset:0;border-radius:24px;padding:2px;pointer-events:none;z-index:5;
-    background:radial-gradient(240px circle at var(--x,-999px) var(--y,-999px),var(--c),color-mix(in srgb,var(--c) 35%,transparent) 45%,transparent 72%);
+  .bcard>.edge{position:absolute;inset:0;border-radius:24px;padding:3px;pointer-events:none;z-index:5;
+    background:radial-gradient(280px circle at var(--x,-999px) var(--y,-999px),var(--c),color-mix(in srgb,var(--c) 50%,transparent) 45%,transparent 75%);
     -webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
     mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
     opacity:var(--o,0);transition:opacity .25s cubic-bezier(.2,.7,.2,1)}
