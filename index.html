@@ -15,8 +15,8 @@
   html,body{margin:0;background:var(--page)}
   body{font-family:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   /* Figma frame "Container 1" — 1440 × 970, scaled to fit the viewport width */
-  .viewport{width:100%;overflow:hidden;position:relative}
-  .stage{position:absolute;left:50%;top:0;width:1440px;height:970px;transform-origin:50% 0;background:#fff}
+  .viewport{position:fixed;inset:0;overflow:hidden;background:#fff}
+  .stage{position:absolute;left:0;top:0;width:1440px;height:970px;transform-origin:0 0;background:#fff}
   .bcard{position:absolute;border-radius:24px;overflow:hidden;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent;isolation:isolate}
   .bcard:focus-visible{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--c)}
   .bcard>svg{position:absolute;left:0;top:0;display:block}
@@ -40,7 +40,12 @@
 </div></div>
 <script>
 (function(){ var vp=document.getElementById('vp'), st=document.getElementById('stage');
-  function fit(){ var s=Math.min(1.25, vp.clientWidth/1440); st.style.transform='translateX(-50%) scale('+s+')'; vp.style.height=(970*s)+'px'; }
+  function fit(){
+    // fit the card grid (Figma x 80→1360, y 103.5→866.5) inside the visible screen, centred, with a margin
+    var W=vp.clientWidth, H=vp.clientHeight, pad=Math.max(16, Math.min(W,H)*0.04);
+    var s=Math.min((W-2*pad)/1280, (H-2*pad)/763, 1.6);
+    var x=(W-1280*s)/2-80*s, y=(H-763*s)/2-103.5*s;
+    st.style.transform='translate('+x+'px,'+y+'px) scale('+s+')'; }
   window.addEventListener('resize',fit); fit(); })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
